@@ -1,0 +1,15 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        checked = {}
+
+        for i, num in enumerate(nums):
+            leftover = target - num
+            if leftover in checked:
+                two_sum_output = [checked[leftover], i]
+                return two_sum_output
+            checked[num] = i
