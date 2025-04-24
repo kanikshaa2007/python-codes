@@ -1,0 +1,31 @@
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        # Sort the candidates to help skip duplicates later
+        candidates.sort()
+        
+        # Initialize dp table where dp[s] will store all combinations that sum to s.
+        # For convenience, we use an array of lists.
+        dp = [[] for _ in range(target + 1)]
+        dp[0] = [[]]  # One way to get a sum of 0: use an empty list.
+        
+        for idx, candidate in enumerate(candidates):
+            # Traverse backwards to ensure each candidate is used only once.
+            for s in range(target, candidate - 1, -1):
+                if dp[s - candidate]:
+                    # Prepare to collect new combinations for sum s.
+                    new_combinations = []
+                    for comb in dp[s - candidate]:
+                        # To maintain order and uniqueness, append candidate at the end.
+                        new_comb = comb + [candidate]
+                        
+                        # Optionally, sort each new_comb (if not assured by iteration order)
+                        # new_comb = sorted(new_comb)  # This is usually not needed if candidates are sorted.
+                        
+                        # Check if this new combination is already in our list to avoid duplicates.
+                        if new_comb not in dp[s]:
+                            new_combinations.append(new_comb)
+                    
+                    # Append new combinations to dp[s]
+                    dp[s].extend(new_combinations)
+        
+        return dp[target]
