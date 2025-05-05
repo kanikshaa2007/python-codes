@@ -1,0 +1,29 @@
+class Solution(object):
+        def increasingBST(self, root):
+            list_to=self.turn_list(root)
+            return self.list_toBST(list_to)
+        def turn_list(self, root):
+            def nest(root,result):
+                if root is None:
+                    return None
+                nest(root.left, result)
+                result.append(root.val)
+                nest(root.right, result)
+                return result
+            return nest(root,[])
+        def list_toBST(self, nums):
+            root=None
+            for num in nums:
+                if num is not None:
+                    root=self.insert(root,num)
+            return root
+        def insert(self, root, num):
+            if root is None:
+                return TreeNode(num)
+            if num<root.val:
+                root.left=self.insert(root.left,num)
+            else:
+                root.right=self.insert(root.right,num)
+            return root
+        
+                    
