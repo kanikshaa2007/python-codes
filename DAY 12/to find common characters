@@ -1,0 +1,62 @@
+class Solution(object):
+    def commonChars(self, words):
+
+        #This is a cleaned up and more readable code explained by chat gpt and collection framework is in "C" so it runs slightly faster 
+
+        # from collections import Counter
+
+        # com_char=Counter(words[0])
+
+        # for word in words[1:]:
+        #     com_char &= Counter(word)
+        
+        # res=[]
+
+        # for char,cnt in com_char.items():
+        #     res.extend([char]*cnt)
+
+        # return res
+
+
+        #This is my initial approach whichs very staright forward got busted in between then took help of chat gpt 
+
+        # com_char={}
+
+        # for char in words[0]:
+        #     if char in com_char:
+        #         com_char[char]+=1
+        #     else:
+        #         com_char[char]=1
+
+     
+
+        # for word in words[1:]:
+        #     cur_char={}
+
+        #     for char in word:
+        #         if char in com_char:
+        #             if char in cur_char:
+        #                 cur_char[char]+=1
+        #             else:
+        #                 cur_char[char]=1
+
+        #     for char in list(com_char.keys()):
+        #         if char not in cur_char:
+        #             del com_char[char]
+        #         else:
+        #             com_char[char]=min(com_char[char],cur_char[char])
+        
+       
+        # res = []
+        
+        # for char,cnt in com_char.items():
+        #     res.extend([char]*cnt)
+
+        # return res
+
+
+
+        #There are even 1 liner for this solution 
+        return list(reduce(collections.Counter.__and__, map(collections.Counter, words)).elements())
+
+            
