@@ -1,0 +1,4 @@
+n = -5
+
+res = "Positive" if n > 0 else "Negative" if n < 0 else "Zero"
+print(res)
