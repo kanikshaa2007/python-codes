@@ -1,0 +1,27 @@
+class Solution(object):
+    def customSortString(self, order, s):
+        """
+        :type order: str
+        :type s: str
+        :rtype: str
+        """
+        # sort s based on the order in order
+        # if letter not there, append last
+        priorityDict = {}
+        n = len(s)
+        ret = ""
+        extra = ""
+
+        for i in range(n):
+            letter = s[i]
+            if letter in order:
+                priorityDict[letter] = priorityDict.get(letter, 0) + 1 
+            else:
+                extra += letter
+
+        for letter in order:
+            if letter in priorityDict:
+                ret += letter * priorityDict[letter]
+        ret += extra
+
+        return ret
