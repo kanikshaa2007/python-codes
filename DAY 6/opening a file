@@ -1,0 +1,2 @@
+# Open the file and read its contents
+with open('geeks.txt', 'r') as file:
