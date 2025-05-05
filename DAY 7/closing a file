@@ -1,0 +1,3 @@
+file = open("geeks.txt", "r")
+# Perform file operations
+file.close()
