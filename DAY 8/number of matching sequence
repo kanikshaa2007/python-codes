@@ -1,0 +1,22 @@
+class Solution(object):
+    def numMatchingSubseq(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: int
+        """
+        states = defaultdict(list)
+        for word in words:
+            states[word[0]].append(word[1:])
+        count = 0
+
+        for c in s:
+            state = states[c]
+            states[c] = []
+            for suffix in state:
+                #suffix = ""
+                if not suffix:
+                    count+=1
+                else:
+                    states[suffix[0]].append(suffix[1:])
+        return count                
